@@ -18,8 +18,8 @@ RUN python -m venv /py && \
     # instalam dependencies in docker
     /py/bin/pip install -r /tmp/requirements.txt && \
     # stergem fisierul de requirements din docker dupa ce il folosim pt a avea o imagine cat mai simpla
-    if [ $DEV = "true"]; \
-        then /py/bin.pip install -r tmp/requirements.dev.txt ; \
+    if [ $DEV = "true" ]; \
+        then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     rm -rf /tmp && \
     adduser \
@@ -29,7 +29,7 @@ RUN python -m venv /py && \
         django-user
 
 # rulam orice comanda din venv cu ajutorul path-ului
-ENV PATH="/py/bin:$path"
+ENV PATH="/py/bin:$PATH"
 
 # totul pana aici a fost facut cu the root user, de aici incolo schimbam userul pentru ca in cazul unui atac, atacatorul sa nu aiba toate drepturile root-ului
 USER django-user 
