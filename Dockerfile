@@ -4,8 +4,8 @@ LABEL maintainer="ali"
 ENV PYTHONUNBUFFERED 1
 
 # punem toate dependencies din requirements in requirementul din docker
-COPY ./requirements.txt /tmp/requirements.txt  
-COPY ./requirements.dev.txt /tmp/requirements.dev.txt  
+COPY ./requirements.txt /tmp/requirements.txt
+COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
@@ -24,7 +24,7 @@ RUN python -m venv /py && \
     rm -rf /tmp && \
     adduser \
     # cream un user simplu 
-        --disabled-password \ 
+        --disabled-password \
         --no-create-home \
         django-user
 
@@ -32,4 +32,4 @@ RUN python -m venv /py && \
 ENV PATH="/py/bin:$PATH"
 
 # totul pana aici a fost facut cu the root user, de aici incolo schimbam userul pentru ca in cazul unui atac, atacatorul sa nu aiba toate drepturile root-ului
-USER django-user 
+USER django-user
