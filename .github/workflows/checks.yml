@@ -5,7 +5,7 @@ on: [push]
 
 jobs:
   test-lint:
-    name: Yest and Lint
+    name: Test and Lint
     runs-on: ubuntu-20.04
     steps:
       -name: Login to Docker Hub
@@ -14,8 +14,8 @@ jobs:
         username: ${{secrets.DOCKERHUB_USER}}
         password: ${{secrets.DOCKERHUB_TOKEN}}
       - name: Checkout
-        user: actions/checkout@v2
-      -name: Test
+        uses: actions/checkout@v2
+      - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
-      -name: Lint
+      - name: Lint
         run: docker-compose run --rm app sh -c "flake8"
