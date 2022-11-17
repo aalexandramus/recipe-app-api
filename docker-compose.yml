@@ -1,0 +1,17 @@
+# docker version so in case of new version release the code still works
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+    volumes:
+    # we want to update the code we add in real time and not rebuild the container every time a new line of code is written
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+  # comanda folosita to run the service
